@@ -19,8 +19,6 @@ public class Game {
      * Used to collect user's input and check if it's an int
      * @return user choice as int
      */
-    // TODO ? Après une erreur, on vide le scanner afin de pouvoir surveiller le prochain int saisie
-    //            scanChoice.next();
     public int userInputInt() {
         Scanner sc = new Scanner(System.in);
         while (!sc.hasNextInt()) {
@@ -59,15 +57,15 @@ public class Game {
     }
 
     public int askCharacterCreation() {
-//        int choice = -1;
+        int userChoice;
 
         do {
             System.out.println("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage)");
         }
-        while (!isUserInputOk(1, userInputInt() ));
+        while (!isUserInputOk(1, userChoice = userInputInt() ));
 
-//        return choice;
-        return 0;
+        System.out.println("USER CHOICE ->> " + userChoice );
+        return userChoice;
     }
 
 }
