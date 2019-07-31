@@ -1,13 +1,15 @@
 package com.bb;
 
 public abstract class Character {
+    private int playerOwner;
     private int level;
     private int life;
     private int strength;
     private int agility;
     private int intelligence;
 
-    public Character(int level, int life, int strength, int agility, int intelligence) {
+    public Character(int playerOwner, int level, int life, int strength, int agility, int intelligence) {
+        this.playerOwner = playerOwner;
         this.level = level;
         this.life = life;
         this.strength = strength;
