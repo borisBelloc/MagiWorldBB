@@ -65,4 +65,5 @@ public abstract class Character {
     public int getIntelligence() {
         return intelligence;
     }
+
 }

@@ -33,6 +33,7 @@ public class Game {
             // initialise la class choisis
             characterCreation(classesList.get(askCharacterCreation()), playersList[i]);
             System.out.println("Hero created");
+            askCharacterAttributes();
 
             System.out.println("charactersList AFTER ------> " + charactersList);
             System.out.println(" AFTER -----> ----->" + Arrays.toString(charactersList.toArray()));
@@ -70,11 +71,12 @@ public class Game {
     /**
      * Check if the user input is in the allowed choice range
      *
-     * @param userChoice
      * @param origin     // origin (allowed value):
-     *                   // 1 : askCharacterCreation : 0 < x <= 3
-     *                   // 2 : attributs selection : x < level
+     *                   // 1 : askCharacterCreation() : 0 < x <= 3
+     *                   // 20 : is attribute value ok : 1 <= x <= 100
+     *                   // 21 : askCharacterAttributes() : x < level
      *                   // 3 : combat selection ? : 1 || 2
+     * @param userChoice : input entered by the user
      * @return boolean
      */
     public boolean isUserInputOk(int origin, int userChoice) {
@@ -85,7 +87,12 @@ public class Game {
                 } else {
                     return false;
                 }
-//            case 2:
+            case 20:
+                if ( 1 <= userChoice && userChoice <= 100 ) {
+                    return true;
+                } else {
+                    return false;
+                }
 //                break;
 //            case 3:
 //                break;
@@ -101,6 +108,34 @@ public class Game {
         }
         while (!isUserInputOk(1, userChoice = userInputInt()));
         return userChoice;
+    }
+
+    public void askCharacterAttributes() {
+        // was int
+// Vie : égale au niveau du joueur * 5
+
+        int charLevel;
+
+        do {
+            System.out.println("Niveau du personnage ?");
+        }
+        while (!isUserInputOk(20, charLevel = userInputInt()));
+
+//TODO : refaire le do while pour chaque attributs
+
+        System.out.println("Force du personnage ?");
+        int charStrength = userInputInt();
+        System.out.println("Agilité du personnage ?");
+        int charAgility = userInputInt();
+        System.out.println("Intelligence du personnage ?");
+        int charIntelligence = userInputInt();
+
+        //    private int level;
+        //    private int life;
+        //    private int strength;
+        //    private int agility;
+        //    private int intelligence;
+
     }
 
     public void characterCreation(String userChoice, String playerOwner) {
@@ -121,6 +156,7 @@ public class Game {
 //                break;
 //            case 3:
 //                break;
+
         }
 
     }
