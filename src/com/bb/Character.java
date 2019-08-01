@@ -1,14 +1,14 @@
 package com.bb;
 
 public abstract class Character {
-    private int playerOwner;
+    private String playerOwner;
     private int level;
     private int life;
     private int strength;
     private int agility;
     private int intelligence;
 
-    public Character(int playerOwner, int level, int life, int strength, int agility, int intelligence) {
+    public Character(String playerOwner, int level, int life, int strength, int agility, int intelligence) {
         this.playerOwner = playerOwner;
         this.level = level;
         this.life = life;
@@ -40,5 +40,29 @@ public abstract class Character {
     abstract String getSpecialAttackName();
 
 
+    // * GETTER
 
+    public String getPlayerOwner() {
+        return playerOwner;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getLife() {
+        return life;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public int getAgility() {
+        return agility;
+    }
+
+    public int getIntelligence() {
+        return intelligence;
+    }
 }

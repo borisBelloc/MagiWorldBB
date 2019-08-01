@@ -2,7 +2,7 @@ package com.bb;
 
 public class Warrior extends Character {
 
-    public Warrior(int playerOwner, int level, int life, int strength, int agility, int intelligence) {
+    public Warrior(String playerOwner, int level, int life, int strength, int agility, int intelligence) {
         super(playerOwner, level, life, strength, agility, intelligence);
     }
 
