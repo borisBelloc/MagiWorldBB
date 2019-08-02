@@ -11,7 +11,6 @@ public class Game {
     // stock les personnages créés
     List<Character> charactersList = new ArrayList<Character>();
 
-
     // DOC : https://guava.dev/releases/snapshot/api/docs/com/google/common/collect/ImmutableMap.html
     // DOC : https://www.geeksforgeeks.org/immutable-map-in-java/
     // DOC : https://stackoverflow.com/a/6802502/9552861
@@ -29,13 +28,16 @@ public class Game {
             System.out.printf("Création du personnage du %s%n", playersList[i]);
 
             // askClass : transform the int into String 'class name')
+            // todo : a t'on vraiment besoin d'un string ?
             String chosenClass = classesList.get(askCharacterClass());
 
+            // Character creation
+            // characterCreation(chosenClass + characterAttributes[] + player name)
+            characterCreation(chosenClass, askCharacterAttributes(), playersList[i] );
             // askAttribute
 
             // print attributes array
-            System.out.println(Arrays.toString(askCharacterAttributes()));
-
+//            System.out.println(Arrays.toString(askCharacterAttributes()));
 
 
             // createCharacter
@@ -47,8 +49,7 @@ public class Game {
 //            askCharacterAttributes();
 
             System.out.println("charactersList AFTER ------> " + charactersList);
-            System.out.println(" AFTER -----> ----->" + Arrays.toString(charactersList.toArray()));
-
+//            System.out.println(" AFTER -----> ----->" + Arrays.toString(charactersList.toArray()));
 
 
             // print les propriétaire des perso
@@ -83,7 +84,6 @@ public class Game {
 
     /**
      * Check if the user input is in the allowed choice range
-     *
      * @param origin     // origin (allowed value):
      *                   // 1 : askCharacterCreation() : 0 < x <= 3
      *                   // 20 : is attribute value ok : 1 <= x <= 100
@@ -101,7 +101,7 @@ public class Game {
                     return false;
                 }
             case 20:
-                if ( 1 <= userChoice && userChoice <= 100 ) {
+                if (1 <= userChoice && userChoice <= 100) {
                     return true;
                 } else {
                     return false;
@@ -116,6 +116,7 @@ public class Game {
 
     /**
      * Return choosen class as int
+     *
      * @return 1 == "Guerrier" | 2 == "Rôdeur" | 3 == "Mage"
      */
     public int askCharacterClass() {
@@ -128,47 +129,55 @@ public class Game {
     }
 
     /**
-     * return an array with the attributes
+     * return an array int[] with the character attributes
      * @return [ level, strength, agility, intelligence, life ]
      */
     public int[] askCharacterAttributes() {
-        String[] AttributesList = {"Niveau", "Force", "Agilité", "Intelligence"};
-        int[] characterAttributes = new int[4];
-// Vie : égale au niveau du joueur * 5
-        //todo: boucle while +=all_attribute =!= lvl
+        String[] attributesList = {"Niveau", "Force", "Agilité", "Intelligence"};
+        int[] characterAttributes = new int[5];
+        boolean areAttributesOk = false;
 
-        for (int i = 0 ; i < AttributesList.length ; i++)
-        {
-        do {
-            System.out.printf("%s du personnage ?", AttributesList[i] );
+        while (!areAttributesOk) {
+            for (int i = 0; i < attributesList.length; i++) {
+                do {
+                    System.out.printf("%s du personnage ?\n", attributesList[i]);
+                }
+                while (!isUserInputOk(20, characterAttributes[i] = userInputInt()));
+            }
+            if ((characterAttributes[1] + characterAttributes[2] + characterAttributes[3]) == characterAttributes[0]) {
+                areAttributesOk = true;
+            } else { System.out.println(
+                        "La saisie n'est pas valide ! La valeur des attributs doit être égal au niveau du joueur\n" +
+                        "(Règle : force + agilité + intelligence = niveau joueur).\n"
+            );}
+            // calculating life attribute : life = level * 5
+            characterAttributes[4] = characterAttributes[0] * 5;
         }
-        while (!isUserInputOk(20, characterAttributes[i] = userInputInt()));
-        }
-
-//TODO : refaire le do while pour chaque attributs
-
-
         return characterAttributes;
-        //    private int level;
-        //    private int life;
-        //    private int strength;
-        //    private int agility;
-        //    private int intelligence;
-
     }
 
-    public void characterCreation(String userChoice, String playerOwner) {
-        // DOC : you actually don't need to include <String, String> the second time.
-        // You can just do Map<String, String> map = new HashMap<>()
-        // DOC : Map <K, V>
-//        Map<Integer, String> map =
 
-        switch (userChoice) {
+    /**
+     *
+     * @param chosenClass
+     *          1 : warrior
+     *          2 : rogue
+     *          3 : wizard
+     * @param characterAttributes
+     *          [ level, strength, agility, intelligence, life ]
+     * @param playerOwner player name
+     */
+    public void characterCreation(String chosenClass, int[] characterAttributes, String playerOwner) {
+
+        switch (chosenClass) {
             case "Guerrier":
                 System.out.println("IL A CHOISIS Guerrier");
 //                Product cafe = new Product("Philips", "Senseo Noir", 79.99);
 //                Character test1 = new Warrior(1,);
-                charactersList.add(new Warrior(playerOwner, 2, 3, 4, 5, 6));
+                charactersList.add(new Warrior(
+                        playerOwner, characterAttributes[0], characterAttributes[1], characterAttributes[2],
+                        characterAttributes[3], characterAttributes[4]
+                ));
 
 
 //            case 2:

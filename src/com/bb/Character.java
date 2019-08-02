@@ -3,10 +3,11 @@ package com.bb;
 public abstract class Character {
     private String playerOwner;
     private int level;
-    private int life;
     private int strength;
     private int agility;
     private int intelligence;
+    private int life;
+
 
     public Character(String playerOwner, int level, int life, int strength, int agility, int intelligence) {
         this.playerOwner = playerOwner;
