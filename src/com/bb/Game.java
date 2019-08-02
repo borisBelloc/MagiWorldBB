@@ -34,7 +34,10 @@ public class Game {
             // Character creation
             // characterCreation(chosenClass + characterAttributes[] + player name)
             characterCreation(chosenClass, askCharacterAttributes(), playersList[i] );
-            // askAttribute
+
+            // print character description
+
+
 
             // print attributes array
 //            System.out.println(Arrays.toString(askCharacterAttributes()));
@@ -171,9 +174,6 @@ public class Game {
 
         switch (chosenClass) {
             case "Guerrier":
-                System.out.println("IL A CHOISIS Guerrier");
-//                Product cafe = new Product("Philips", "Senseo Noir", 79.99);
-//                Character test1 = new Warrior(1,);
                 charactersList.add(new Warrior(
                         playerOwner, characterAttributes[0], characterAttributes[1], characterAttributes[2],
                         characterAttributes[3], characterAttributes[4]

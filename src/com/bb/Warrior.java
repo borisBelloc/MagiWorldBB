@@ -13,8 +13,13 @@ public class Warrior extends Character {
 
     @Override
     void specialAttack() {
-
     }
+
+    @Override
+    String getDescription() {
+        return "";
+    }
+
 
     @Override
     String getBasicAttackName() {

@@ -18,6 +18,8 @@ public abstract class Character {
         this.intelligence = intelligence;
     }
 
+
+
     /**
      * Basic attack
      */
@@ -28,7 +30,11 @@ public abstract class Character {
      */
     abstract void specialAttack();
 
-    // TODO: Ajout getter ?
+    /**
+     * Character description
+     * @return w/ attributs
+     */
+    abstract String getDescription();
 
     /**
      * @return Basic attack name
@@ -73,6 +79,7 @@ public abstract class Character {
         this.playerOwner = playerOwner;
     }
 
+//    TODO: del setLevel ? on ne modifie pas le lvl en jeu
     public void setLevel(int level) {
         this.level = level;
     }
