@@ -66,4 +66,29 @@ public abstract class Character {
         return intelligence;
     }
 
+    // * SETTER
+
+    public void setPlayerOwner(String playerOwner) {
+        this.playerOwner = playerOwner;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setLife(int life) {
+        this.life = life;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public void setAgility(int agility) {
+        this.agility = agility;
+    }
+
+    public void setIntelligence(int intelligence) {
+        this.intelligence = intelligence;
+    }
 }

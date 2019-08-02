@@ -6,7 +6,9 @@ import java.util.*;
 
 
 public class Game {
+    // liste des noms des joueurs
     public String[] playersList = {"Joueur 1", "Joueur 2"};
+    // stock les personnages créés
     List<Character> charactersList = new ArrayList<Character>();
 
 
@@ -26,17 +28,28 @@ public class Game {
             // %n : saut de ligne
             System.out.printf("Création du personnage du %s%n", playersList[i]);
 
-            // return le nom de la class choisi :: "Guerrier", "Rôdeur", "Mage"
-//            classesList.get(askCharacterCreation());
+            // askClass : transform the int into String 'class name')
+            String chosenClass = classesList.get(askCharacterClass());
+
+            // askAttribute
+
+            // print attributes array
+            System.out.println(Arrays.toString(askCharacterAttributes()));
+
+
+
+            // createCharacter
 
 
             // initialise la class choisis
-            characterCreation(classesList.get(askCharacterCreation()), playersList[i]);
-            System.out.println("Hero created");
-            askCharacterAttributes();
+//            characterCreation(classesList.get(askCharacterClasses()), playersList[i]);
+//            System.out.println("Hero created");
+//            askCharacterAttributes();
 
             System.out.println("charactersList AFTER ------> " + charactersList);
             System.out.println(" AFTER -----> ----->" + Arrays.toString(charactersList.toArray()));
+
+
 
             // print les propriétaire des perso
 //            System.out.println("AA" + charactersList.get(0).getPlayerOwner());
@@ -101,7 +114,11 @@ public class Game {
         return false;
     }
 
-    public int askCharacterCreation() {
+    /**
+     * Return choosen class as int
+     * @return 1 == "Guerrier" | 2 == "Rôdeur" | 3 == "Mage"
+     */
+    public int askCharacterClass() {
         int userChoice;
         do {
             System.out.println("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage)");
@@ -110,26 +127,28 @@ public class Game {
         return userChoice;
     }
 
-    public void askCharacterAttributes() {
-        // was int
+    /**
+     * return an array with the attributes
+     * @return [ level, strength, agility, intelligence, life ]
+     */
+    public int[] askCharacterAttributes() {
+        String[] AttributesList = {"Niveau", "Force", "Agilité", "Intelligence"};
+        int[] characterAttributes = new int[4];
 // Vie : égale au niveau du joueur * 5
+        //todo: boucle while +=all_attribute =!= lvl
 
-        int charLevel;
-
+        for (int i = 0 ; i < AttributesList.length ; i++)
+        {
         do {
-            System.out.println("Niveau du personnage ?");
+            System.out.printf("%s du personnage ?", AttributesList[i] );
         }
-        while (!isUserInputOk(20, charLevel = userInputInt()));
+        while (!isUserInputOk(20, characterAttributes[i] = userInputInt()));
+        }
 
 //TODO : refaire le do while pour chaque attributs
 
-        System.out.println("Force du personnage ?");
-        int charStrength = userInputInt();
-        System.out.println("Agilité du personnage ?");
-        int charAgility = userInputInt();
-        System.out.println("Intelligence du personnage ?");
-        int charIntelligence = userInputInt();
 
+        return characterAttributes;
         //    private int level;
         //    private int life;
         //    private int strength;
