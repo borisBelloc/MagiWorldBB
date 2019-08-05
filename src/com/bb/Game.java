@@ -29,35 +29,31 @@ public class Game {
             // %n : saut de ligne
             System.out.printf("Création du personnage du %s%n", playersList[i]);
 
-            // askClass : transform the int into String 'class name')
+            // * askClass : transform the int into String 'class name')
             // todo : a t'on vraiment besoin d'un string ?
             String chosenClass = classesList.get(askCharacterClass());
 
-            // Character creation
+            // * Character creation
             // characterCreation(chosenClass + characterAttributes[] + player name)
             characterCreation(chosenClass, askCharacterAttributes(), playersList[i]);
 
             // print character description
             System.out.println("charactersList hero player i ------> " + charactersList.get(i).getDescription());
+        }
+            System.out.println("Creation des heros terminés");
+
+        // * Combat start
+        fight(charactersList);
 
 
-            // print attributes array
-//            System.out.println(Arrays.toString(askCharacterAttributes()));
+        // print attributes array
+        // System.out.println(Arrays.toString(askCharacterAttributes()));
 
-
-            // createCharacter
-
-
-            // initialise la class choisis
-//            characterCreation(classesList.get(askCharacterClasses()), playersList[i]);
-//            System.out.println("Hero created");
-//            askCharacterAttributes();
-
-            System.out.println("charactersList AFTER ------> " + charactersList);
+//            System.out.println("charactersList AFTER ------> " + charactersList);
 //            System.out.println(" AFTER -----> ----->" + Arrays.toString(charactersList.toArray()));
 
 
-            // print les propriétaire des perso
+        // print les propriétaire des perso
 //            System.out.println("AA" + charactersList.get(0).getPlayerOwner());
 
 //            for(int j = 0; j < charactersList.size(); j++) {
@@ -66,9 +62,6 @@ public class Game {
 //                //playersList[i]
 //            }
 
-            System.out.println("Creation des heros terminés");
-
-        }
     }
 
 
@@ -160,16 +153,15 @@ public class Game {
                         System.out.printf("%s du personnage ?\n", attributesList[i]);
                     }
                     while (!isUserInputOk(20, characterAttributes[i] = userInputInt()));
-
                 } else {
                     // attributes can be ==  0
-
                     do {
                         System.out.printf("%s du personnage ?\n", attributesList[i]);
                     }
                     while (!isUserInputOk(21, characterAttributes[i] = userInputInt()));
                 }
             }
+            // check if rule is respected : "the sum of all attributes must be equal to Character level"
             if ((characterAttributes[1] + characterAttributes[2] + characterAttributes[3]) == characterAttributes[0]) {
                 areAttributesOk = true;
             } else {
@@ -200,16 +192,24 @@ public class Game {
                         playerOwner, characterAttributes[0], characterAttributes[1], characterAttributes[2],
                         characterAttributes[3], characterAttributes[4]
                 ));
-
-
 //            case 2:
 //                break;
 //            case 3:
 //                break;
-
         }
-
     }
 
+    //    public void fight( Character character_1, Character character_2 ) {
+    public void fight(List<Character> charactersList) {
+//        List<Character> charactersList = new ArrayList<Character>();
+        System.out.println("LE TABLEAU DE PERSO " + charactersList);
+
+//        while ( character_1.getLife() > 0 && character_2.getLife() > 0 ) {
+        // FIGHT
+
+        // for dans la liste de joueur[i] :
+        // quelle attack ? 1 ou 2 ?
+
+    }
 
 }
