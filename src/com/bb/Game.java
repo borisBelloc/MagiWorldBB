@@ -10,6 +10,9 @@ public class Game {
     public String[] playersList = {"Joueur 1", "Joueur 2"};
     // stock les personnages créés
     List<Character> charactersList = new ArrayList<Character>();
+    // list d'objet Character
+//    Character[] charactersList = new Character[2];
+
 
     // DOC : https://guava.dev/releases/snapshot/api/docs/com/google/common/collect/ImmutableMap.html
     // DOC : https://www.geeksforgeeks.org/immutable-map-in-java/
@@ -21,7 +24,6 @@ public class Game {
 
 
     public void start() {
-        // stock les personnages créés
 
         for (int i = 0; i < playersList.length; i++) {
             // %n : saut de ligne
@@ -36,6 +38,7 @@ public class Game {
             characterCreation(chosenClass, askCharacterAttributes(), playersList[i] );
 
             // print character description
+            System.out.println("charactersList hero 0 ------> " + charactersList.get(0).getDescription());
 
 
 

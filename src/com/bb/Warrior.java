@@ -17,7 +17,7 @@ public class Warrior extends Character {
 
     @Override
     String getDescription() {
-        return "Woarg je suis le Guerrier de %s";
+        return "Woarg mon LEVEL est -> " + this.getLevel() ;
         // Todo : return formated string
 //        return String.format("%03d", value);
 
