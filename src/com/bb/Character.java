@@ -23,12 +23,12 @@ public abstract class Character {
     /**
      * Basic attack
      */
-    abstract void basicAttack();
+    abstract int basicAttack();
 
     /**
      * Special attack
      */
-    abstract void specialAttack();
+    abstract int[] specialAttack();
 
     /**
      * Character description
@@ -79,10 +79,6 @@ public abstract class Character {
         this.playerOwner = playerOwner;
     }
 
-//    TODO: del setLevel ? on ne modifie pas le lvl en jeu
-    public void setLevel(int level) {
-        this.level = level;
-    }
 
     public void setLife(int life) {
         this.life = life;

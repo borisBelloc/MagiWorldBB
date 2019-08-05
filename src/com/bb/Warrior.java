@@ -7,12 +7,20 @@ public class Warrior extends Character {
     }
 
     @Override
-    void basicAttack() {
-
+    public int basicAttack() {
+        //  Effectue des dommages égaux à la force du joueur sur l’adversaire.
+        return - getStrength();
     }
 
     @Override
-    void specialAttack() {
+    public int[] specialAttack() {
+        // Damage to enemy as Strength * 2 ; Damage self as Strength / 2
+        int[] specialAttack = new int[2];
+        // damage to enemy
+        specialAttack[0] = getStrength() * 2;
+        // self damage
+        specialAttack[1] = getStrength() / 2;
+        return specialAttack;
     }
 
     @Override
@@ -39,6 +47,4 @@ public class Warrior extends Character {
         return "Coup de Rage";
     }
 
-    // TODO : une methode avec la description du perso
-    // "woarg je suis %class, j'ai x force, x agi..."
 }
