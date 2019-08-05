@@ -40,7 +40,7 @@ public class Game {
             // print character description
             System.out.println("charactersList hero player i ------> " + charactersList.get(i).getDescription());
         }
-            System.out.println("Creation des heros terminés");
+        System.out.println("Creation des heros terminés");
 
         // * Combat start
         fight(charactersList);
@@ -85,9 +85,8 @@ public class Game {
      *
      * @param origin     // origin (allowed value):
      *                   // 1 : askCharacterCreation() : 0 < x <= 3
-     *                   // 20 : is attribute value ok : 1 <= x <= 100
+     *                   // 20 : is level value ok : 1 <= x <= 100
      *                   // 21 : is attribute value ok : 0 <= x <= 100
-     *                   // 22 : askCharacterAttributes() : x < level
      *                   // 3 : combat selection ? : 1 || 2
      * @param userChoice : input entered by the user
      * @return boolean
@@ -113,7 +112,12 @@ public class Game {
                     return false;
                 }
 //                break;
-//            case 3:
+            case 3:
+                if (userChoice == 1 || userChoice == 2) {
+                    return true;
+                } else {
+                    return false;
+                }
 //                break;
         }
 //        TODO: voir ce return à fix
@@ -199,16 +203,61 @@ public class Game {
         }
     }
 
+    //    ---------------------- FIGHT
+    public int askAttack(Character currentPlayer, int currentLife) {
+        int userChoice;
+        do {
+            System.out.printf("%s (%d vitalité) veuillez choisir votre action " +
+                            "(1 : Attaque Basique, 2 : Attaque Spéciale)\n",
+                    currentPlayer.getPlayerOwner(), currentLife);
+
+        }
+        while (!isUserInputOk(3, userChoice = userInputInt()));
+        return userChoice;
+    }
+
+    public Character selectEnemy(List<Character> charactersList, Character currentPlayer ) {
+        Character enemy;
+        if (currentPlayer == charactersList.get(0) ) {
+            enemy = charactersList.get(1);
+        } else { enemy = charactersList.get(0); }
+        return enemy;
+
+    }
+
     //    public void fight( Character character_1, Character character_2 ) {
     public void fight(List<Character> charactersList) {
 //        List<Character> charactersList = new ArrayList<Character>();
-        System.out.println("LE TABLEAU DE PERSO " + charactersList);
+//        System.out.println("LE TABLEAU DE PERSO " + charactersList.get(0).getPlayerOwner());
+//        System.out.println("LE TABLEAU DE PERSO " + charactersList.get(1).getPlayerOwner());
+        int userChoice;
+        Character enemy;
 
-//        while ( character_1.getLife() > 0 && character_2.getLife() > 0 ) {
+        while (charactersList.get(0).getLife() > 0 && charactersList.get(1).getLife() > 0) {
+
+            for (int i = 0; i < charactersList.size(); i++) {
+                enemy = selectEnemy(charactersList, charactersList.get(i));
+                userChoice = askAttack(charactersList.get(i), charactersList.get(i).getLife());
+
+                if (userChoice == 1) {
+                    // basic attack
+                    System.out.println("LIFEE" + enemy.getLife());
+
+                } else if (userChoice == 2) {
+                    // spécial attack
+
+                }
+
+
+            }
+        }
+
+
+
         // FIGHT
 
-        // for dans la liste de joueur[i] :
         // quelle attack ? 1 ou 2 ?
+//        askAttack()
 
     }
 
