@@ -216,17 +216,20 @@ public class Game {
         return userChoice;
     }
 
-    public Character selectEnemy(List<Character> charactersList, Character currentPlayer ) {
+    public Character selectEnemy(List<Character> charactersList, Character currentPlayer) {
         Character enemy;
-        if (currentPlayer == charactersList.get(0) ) {
+        if (currentPlayer == charactersList.get(0)) {
             enemy = charactersList.get(1);
-        } else { enemy = charactersList.get(0); }
+        } else {
+            enemy = charactersList.get(0);
+        }
         return enemy;
 
     }
 
     //    public void fight( Character character_1, Character character_2 ) {
     public void fight(List<Character> charactersList) {
+        // Todo : fix if player1 win, the game MUSt stop immediatly
 //        List<Character> charactersList = new ArrayList<Character>();
 //        System.out.println("LE TABLEAU DE PERSO " + charactersList.get(0).getPlayerOwner());
 //        System.out.println("LE TABLEAU DE PERSO " + charactersList.get(1).getPlayerOwner());
@@ -241,17 +244,18 @@ public class Game {
 
                 if (userChoice == 1) {
                     // basic attack
-                    System.out.println("LIFEE" + enemy.getLife());
+                    enemy.setLife(enemy.getLife() + charactersList.get(i).basicAttack());
 
                 } else if (userChoice == 2) {
                     // spécial attack
+                    enemy.setLife(enemy.getLife() + charactersList.get(i).specialAttack()[0]);
+                    charactersList.get(i).setLife(charactersList.get(i).getLife() + charactersList.get(i).specialAttack()[1]);
 
                 }
 
 
             }
         }
-
 
 
         // FIGHT
