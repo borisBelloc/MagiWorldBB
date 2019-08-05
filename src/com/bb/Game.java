@@ -35,11 +35,10 @@ public class Game {
 
             // Character creation
             // characterCreation(chosenClass + characterAttributes[] + player name)
-            characterCreation(chosenClass, askCharacterAttributes(), playersList[i] );
+            characterCreation(chosenClass, askCharacterAttributes(), playersList[i]);
 
             // print character description
-            System.out.println("charactersList hero 0 ------> " + charactersList.get(0).getDescription());
-
+            System.out.println("charactersList hero player i ------> " + charactersList.get(i).getDescription());
 
 
             // print attributes array
@@ -90,10 +89,12 @@ public class Game {
 
     /**
      * Check if the user input is in the allowed choice range
+     *
      * @param origin     // origin (allowed value):
      *                   // 1 : askCharacterCreation() : 0 < x <= 3
      *                   // 20 : is attribute value ok : 1 <= x <= 100
-     *                   // 21 : askCharacterAttributes() : x < level
+     *                   // 21 : is attribute value ok : 0 <= x <= 100
+     *                   // 22 : askCharacterAttributes() : x < level
      *                   // 3 : combat selection ? : 1 || 2
      * @param userChoice : input entered by the user
      * @return boolean
@@ -107,6 +108,12 @@ public class Game {
                     return false;
                 }
             case 20:
+                if (1 <= userChoice && userChoice <= 100) {
+                    return true;
+                } else {
+                    return false;
+                }
+            case 21:
                 if (0 <= userChoice && userChoice <= 100) {
                     return true;
                 } else {
@@ -136,6 +143,7 @@ public class Game {
 
     /**
      * return an array int[] with the character attributes
+     *
      * @return [ level, strength, agility, intelligence, life ]
      */
     public int[] askCharacterAttributes() {
@@ -145,17 +153,31 @@ public class Game {
 
         while (!areAttributesOk) {
             for (int i = 0; i < attributesList.length; i++) {
-                do {
-                    System.out.printf("%s du personnage ?\n", attributesList[i]);
+
+                // Level must be > 0
+                if (i == 0) {
+                    do {
+                        System.out.printf("%s du personnage ?\n", attributesList[i]);
+                    }
+                    while (!isUserInputOk(20, characterAttributes[i] = userInputInt()));
+
+                } else {
+                    // attributes can be ==  0
+
+                    do {
+                        System.out.printf("%s du personnage ?\n", attributesList[i]);
+                    }
+                    while (!isUserInputOk(21, characterAttributes[i] = userInputInt()));
                 }
-                while (!isUserInputOk(20, characterAttributes[i] = userInputInt()));
             }
             if ((characterAttributes[1] + characterAttributes[2] + characterAttributes[3]) == characterAttributes[0]) {
                 areAttributesOk = true;
-            } else { System.out.println(
+            } else {
+                System.out.println(
                         "La saisie n'est pas valide ! La valeur des attributs doit être égal au niveau du joueur\n" +
-                        "(Règle : force + agilité + intelligence = niveau joueur).\n"
-            );}
+                                "(Règle : force + agilité + intelligence = niveau joueur).\n"
+                );
+            }
             // calculating life attribute : life = level * 5
             characterAttributes[4] = characterAttributes[0] * 5;
         }
@@ -164,14 +186,11 @@ public class Game {
 
 
     /**
-     *
-     * @param chosenClass
-     *          1 : warrior
-     *          2 : rogue
-     *          3 : wizard
-     * @param characterAttributes
-     *          [ level, strength, agility, intelligence, life ]
-     * @param playerOwner player name
+     * @param chosenClass         1 : warrior
+     *                            2 : rogue
+     *                            3 : wizard
+     * @param characterAttributes [ level, strength, agility, intelligence, life ]
+     * @param playerOwner         player name
      */
     public void characterCreation(String chosenClass, int[] characterAttributes, String playerOwner) {
 
