@@ -107,7 +107,7 @@ public class Game {
                     return false;
                 }
             case 20:
-                if (1 <= userChoice && userChoice <= 100) {
+                if (0 <= userChoice && userChoice <= 100) {
                     return true;
                 } else {
                     return false;
