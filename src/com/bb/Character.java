@@ -9,13 +9,13 @@ public abstract class Character {
     private int life;
 
 
-    public Character(String playerOwner, int level, int life, int strength, int agility, int intelligence) {
+    public Character(String playerOwner, int level, int strength, int agility, int intelligence, int life) {
         this.playerOwner = playerOwner;
         this.level = level;
-        this.life = life;
         this.strength = strength;
         this.agility = agility;
         this.intelligence = intelligence;
+        this.life = life;
     }
 
 
