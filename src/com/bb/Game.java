@@ -215,7 +215,7 @@ public class Game {
         return userChoice;
     }
 
-    public Character selectEnemy(List<Character> charactersList, Character currentPlayer) {
+    private Character selectEnemy(List<Character> charactersList, Character currentPlayer) {
         Character enemy;
         if (currentPlayer == charactersList.get(0)) {
             enemy = charactersList.get(1);
@@ -225,11 +225,13 @@ public class Game {
         return enemy;
     }
 
+//    todo : utiliser une methode pour print ou pas ?
+//    private void printTextPlayerLostHeal(Character playerAttacking, Character playerLoosingHeal) {
+//        System.out.printf("%s perd %d points de vie\n",
+//                playerLoosingHeal.getPlayerOwner(), playerAttacking.specialAttack()[0]);
+//    }
+
     public void fight(List<Character> charactersList) {
-        // Todo : fix if player1 win, the game MUSt stop immediatly
-//        List<Character> charactersList = new ArrayList<Character>();
-//        System.out.println("LE TABLEAU DE PERSO " + charactersList.get(0).getPlayerOwner());
-//        System.out.println("LE TABLEAU DE PERSO " + charactersList.get(1).getPlayerOwner());
         int userChoice;
         Character enemy;
         Character currentPlayer;
@@ -244,41 +246,49 @@ public class Game {
                 if (userChoice == 1) {
                     // basic attack
                     enemy.setLife(enemy.getLife() - currentPlayer.basicAttack());
-                    System.out.printf("%s utilise %s et inflige %d dommages\n",
+                    System.out.printf("%s utilise %s et inflige %d dommages.\n",
                             currentPlayer.getPlayerOwner(), currentPlayer.getBasicAttackName(), currentPlayer.basicAttack());
                     System.out.printf("%s perd %d points de vie\n",
                             enemy.getPlayerOwner(), currentPlayer.basicAttack());
 
                 } else if (userChoice == 2) {
                     // spécial attack
+//                    TODO : mettre ça dans les class de perso ?
                     switch (currentPlayer.getSpecialAttackName()) {
                         // warrior
                         case "Coup de Rage":
                             enemy.setLife(enemy.getLife() - currentPlayer.specialAttack()[0]);
                             currentPlayer.setLife(currentPlayer.getLife() - currentPlayer.specialAttack()[1]);
+                            System.out.printf("%s utilise %s et inflige %d dommages.\n",
+                                    currentPlayer.getPlayerOwner(), currentPlayer.getSpecialAttackName(), currentPlayer.specialAttack()[0]);
+                            System.out.printf("%s perd %d points de vie\n",
+                                    enemy.getPlayerOwner(), currentPlayer.specialAttack()[0]);
+                            System.out.printf("%s perd %d points de vie\n",
+                                    currentPlayer.getPlayerOwner(), currentPlayer.specialAttack()[0]);
                             break;
                         case "Concentration":
                             // Concentration : Le joueur gagne son niveau divisé par 2 en agilité
-                            currentPlayer.setAgility(currentPlayer.getAgility() - currentPlayer.specialAttack()[0]);
+                            currentPlayer.setAgility(currentPlayer.getAgility() + currentPlayer.specialAttack()[0]);
                             break;
                         case "Soin ":
                             // if health + healing > maxLife then new life = maxLife
                             int healed = currentPlayer.getLife() + currentPlayer.specialAttack()[0];
                             if (currentPlayer.getMaxLife() < healed) {
                                 currentPlayer.setLife(currentPlayer.getMaxLife());
-                            } else { currentPlayer.setLife(healed); }
+                            } else {
+                                currentPlayer.setLife(healed);
+                            }
                             break;
                     }
                 }
                 // STOP GAME IMMEDIATELY if someone die
                 // todo : if game stop : lancer une fonction gameover()
-                if (currentPlayer.getLife() == 0 || enemy.getLife() == 0 ) {
+                if (currentPlayer.getLife() == 0 || enemy.getLife() == 0) {
                     System.out.println("HE DIED :!!!");
                     break;
                 }
             }
         }
-
 
 
     }
