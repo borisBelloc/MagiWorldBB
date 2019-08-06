@@ -235,11 +235,18 @@ public class Game {
         return enemy;
     }
 
-//    todo : utiliser une methode pour print ou pas ?
+    //    todo : utiliser une methode pour print ou pas ?
 //    private void printTextPlayerLostHeal(Character playerAttacking, Character playerLoosingHeal) {
 //        System.out.printf("%s perd %d points de vie\n",
 //                playerLoosingHeal.getPlayerOwner(), playerAttacking.specialAttack()[0]);
 //    }
+    private String whoLost(Character enemy, Character currentPlayer) {
+        if (enemy.getLife() <= 0 && currentPlayer.getLife() > 0) {
+            return enemy.getPlayerOwner();
+        } else if (enemy.getLife() > 0 && currentPlayer.getLife() <= 0) {
+            return currentPlayer.getPlayerOwner();
+        } else { return "Les deux combattants sont morts"; }
+    }
 
     public void fight(List<Character> charactersList) {
         int userChoice;
@@ -298,7 +305,7 @@ public class Game {
                 // STOP GAME IMMEDIATELY if someone die
                 // todo : if game stop : lancer une fonction gameover()
                 if (currentPlayer.getLife() == 0 || enemy.getLife() == 0) {
-                    System.out.println("HE DIED :!!!");
+                    System.out.printf("%s a perdu !", whoLost( enemy, currentPlayer));
                     break;
                 }
             }
@@ -306,5 +313,6 @@ public class Game {
 
 
     }
+
 
 }
