@@ -246,6 +246,8 @@ public class Game {
                     enemy.setLife(enemy.getLife() - currentPlayer.basicAttack());
                     System.out.printf("%s utilise %s et inflige %d dommages\n",
                             currentPlayer.getPlayerOwner(), currentPlayer.getBasicAttackName(), currentPlayer.basicAttack());
+                    System.out.printf("%s perd %d points de vie\n",
+                            enemy.getPlayerOwner(), currentPlayer.basicAttack());
 
                 } else if (userChoice == 2) {
                     // spécial attack
