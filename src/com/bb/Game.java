@@ -263,19 +263,16 @@ public class Game {
                             currentPlayer.setAgility(currentPlayer.getAgility() + currentPlayer.specialAttack()[0]);
                             break;
                         case "Soin ":
-                            // Soin : Le joueur soigne sa vie et regagne sa quantité d’intelligence fois 2 en points de vie.
-                            // Attention, il ne peut pas avoir plus de vie qu’il n’en avait au départ.
                             // if health + healing > maxLife then new life = maxLife
                             int healed = currentPlayer.getLife() + currentPlayer.specialAttack()[0];
                             if (currentPlayer.getMaxLife() < healed) {
                                 currentPlayer.setLife(currentPlayer.getMaxLife());
-                            } else
-                                currentPlayer.setLife(healed);
+                            } else { currentPlayer.setLife(healed); }
+                            break;
                     }
-
                 }
-
-
+                // STOP GAME IMMEDIATELY if someone die
+                if (currentPlayer.getLife() == 0 || enemy.getLife() == 0 ) { break; }
             }
         }
 
