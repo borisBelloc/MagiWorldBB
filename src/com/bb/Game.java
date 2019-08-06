@@ -196,10 +196,16 @@ public class Game {
                         playerOwner, characterAttributes[0], characterAttributes[1], characterAttributes[2],
                         characterAttributes[3], characterAttributes[4]
                 ));
+                break;
 //            case 2:
 //                break;
-//            case 3:
-//                break;
+            case "Mage":
+                charactersList.add(new Wizard(
+                        playerOwner, characterAttributes[0], characterAttributes[1], characterAttributes[2],
+                        characterAttributes[3], characterAttributes[4]
+                ));
+                break;
+
         }
     }
 
@@ -264,7 +270,7 @@ public class Game {
                             System.out.printf("%s perd %d points de vie\n",
                                     enemy.getPlayerOwner(), currentPlayer.specialAttack()[0]);
                             System.out.printf("%s perd %d points de vie\n",
-                                    currentPlayer.getPlayerOwner(), currentPlayer.specialAttack()[0]);
+                                    currentPlayer.getPlayerOwner(), currentPlayer.specialAttack()[1]);
                             break;
                         case "Concentration":
                             // Concentration : Le joueur gagne son niveau divisé par 2 en agilité
@@ -278,6 +284,8 @@ public class Game {
                             } else {
                                 currentPlayer.setLife(healed);
                             }
+                            System.out.printf("%s utilise %s et gagne %d en vitalité.\n",
+                                    currentPlayer.getPlayerOwner(), currentPlayer.getSpecialAttackName(), currentPlayer.specialAttack()[0]);
                             break;
                     }
                 }
