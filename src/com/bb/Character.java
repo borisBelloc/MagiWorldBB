@@ -7,7 +7,7 @@ public abstract class Character {
     private int agility;
     private int intelligence;
     private int life;
-
+    private int maxLife;
 
     public Character(String playerOwner, int level, int strength, int agility, int intelligence, int life) {
         this.playerOwner = playerOwner;
@@ -16,23 +16,27 @@ public abstract class Character {
         this.agility = agility;
         this.intelligence = intelligence;
         this.life = life;
+        this.maxLife = life;
     }
 
 
     /**
      * Basic attack
+     *
      * @return negative value if damage, positive if healing
      */
     abstract int basicAttack();
 
     /**
      * Special attack
+     *
      * @return negative value if damage, positive if healing
      */
     abstract int[] specialAttack();
 
     /**
      * Character description
+     *
      * @return w/ attributs
      */
     abstract String getDescription();
@@ -72,6 +76,10 @@ public abstract class Character {
 
     public int getIntelligence() {
         return intelligence;
+    }
+
+    public int getMaxLife() {
+        return maxLife;
     }
 
     // * SETTER

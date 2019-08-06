@@ -204,12 +204,13 @@ public class Game {
     }
 
     //    ---------------------- FIGHT
-    public int askAttack(Character currentPlayer, int currentLife) {
+    public int askAttack(Character currentPlayer) {
+        // Todo : obligé d'entrer currentlife ? ne peux ont pas currentplayer.getLife ?
         int userChoice;
         do {
             System.out.printf("%s (%d vitalité) veuillez choisir votre action " +
                             "(1 : Attaque Basique, 2 : Attaque Spéciale)\n",
-                    currentPlayer.getPlayerOwner(), currentLife);
+                    currentPlayer.getPlayerOwner(), currentPlayer.getLife());
 
         }
         while (!isUserInputOk(3, userChoice = userInputInt()));
@@ -235,21 +236,42 @@ public class Game {
 //        System.out.println("LE TABLEAU DE PERSO " + charactersList.get(1).getPlayerOwner());
         int userChoice;
         Character enemy;
+        Character currentPlayer;
 
         while (charactersList.get(0).getLife() > 0 && charactersList.get(1).getLife() > 0) {
 
             for (int i = 0; i < charactersList.size(); i++) {
-                enemy = selectEnemy(charactersList, charactersList.get(i));
-                userChoice = askAttack(charactersList.get(i), charactersList.get(i).getLife());
+                currentPlayer = charactersList.get(i);
+                enemy = selectEnemy(charactersList, currentPlayer);
+//                userChoice = askAttack(currentPlayer, currentPlayer.getLife());
+                userChoice = askAttack(currentPlayer);
 
                 if (userChoice == 1) {
                     // basic attack
-                    enemy.setLife(enemy.getLife() + charactersList.get(i).basicAttack());
+                    enemy.setLife(enemy.getLife() + currentPlayer.basicAttack());
 
                 } else if (userChoice == 2) {
                     // spécial attack
-                    enemy.setLife(enemy.getLife() + charactersList.get(i).specialAttack()[0]);
-                    charactersList.get(i).setLife(charactersList.get(i).getLife() + charactersList.get(i).specialAttack()[1]);
+                    switch (currentPlayer.getSpecialAttackName()) {
+                        // warrior
+                        case "Coup de Rage":
+                            enemy.setLife(enemy.getLife() + currentPlayer.specialAttack()[0]);
+                            currentPlayer.setLife(currentPlayer.getLife() + currentPlayer.specialAttack()[1]);
+                            break;
+                        case "Concentration":
+                            // Concentration : Le joueur gagne son niveau divisé par 2 en agilité
+                            currentPlayer.setAgility(currentPlayer.getAgility() + currentPlayer.specialAttack()[0]);
+                            break;
+                        case "Soin ":
+                            // Soin : Le joueur soigne sa vie et regagne sa quantité d’intelligence fois 2 en points de vie.
+                            // Attention, il ne peut pas avoir plus de vie qu’il n’en avait au départ.
+                            // if health + healing > maxLife then new life = maxLife
+                            int healed = currentPlayer.getLife() + currentPlayer.specialAttack()[0];
+                            if (currentPlayer.getMaxLife() < healed) {
+                                currentPlayer.setLife(currentPlayer.getMaxLife());
+                            } else
+                                currentPlayer.setLife(healed);
+                    }
 
                 }
 
