@@ -23,14 +23,14 @@ public abstract class Character {
     /**
      * Basic attack
      *
-     * @return negative value if damage, positive if healing
+     * @return
      */
     abstract int basicAttack();
 
     /**
      * Special attack
      *
-     * @return negative value if damage, positive if healing
+     * @return
      */
     abstract int[] specialAttack();
 

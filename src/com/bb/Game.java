@@ -228,7 +228,6 @@ public class Game {
 
     }
 
-    //    public void fight( Character character_1, Character character_2 ) {
     public void fight(List<Character> charactersList) {
         // Todo : fix if player1 win, the game MUSt stop immediatly
 //        List<Character> charactersList = new ArrayList<Character>();
@@ -243,24 +242,25 @@ public class Game {
             for (int i = 0; i < charactersList.size(); i++) {
                 currentPlayer = charactersList.get(i);
                 enemy = selectEnemy(charactersList, currentPlayer);
-//                userChoice = askAttack(currentPlayer, currentPlayer.getLife());
                 userChoice = askAttack(currentPlayer);
 
                 if (userChoice == 1) {
                     // basic attack
-                    enemy.setLife(enemy.getLife() + currentPlayer.basicAttack());
+                    enemy.setLife(enemy.getLife() - currentPlayer.basicAttack());
+                    System.out.printf("%s utilise %s et inflige %d dommages\n",
+                            currentPlayer.getPlayerOwner(), currentPlayer.getBasicAttackName(), currentPlayer.basicAttack());
 
                 } else if (userChoice == 2) {
                     // spécial attack
                     switch (currentPlayer.getSpecialAttackName()) {
                         // warrior
                         case "Coup de Rage":
-                            enemy.setLife(enemy.getLife() + currentPlayer.specialAttack()[0]);
-                            currentPlayer.setLife(currentPlayer.getLife() + currentPlayer.specialAttack()[1]);
+                            enemy.setLife(enemy.getLife() - currentPlayer.specialAttack()[0]);
+                            currentPlayer.setLife(currentPlayer.getLife() - currentPlayer.specialAttack()[1]);
                             break;
                         case "Concentration":
                             // Concentration : Le joueur gagne son niveau divisé par 2 en agilité
-                            currentPlayer.setAgility(currentPlayer.getAgility() + currentPlayer.specialAttack()[0]);
+                            currentPlayer.setAgility(currentPlayer.getAgility() - currentPlayer.specialAttack()[0]);
                             break;
                         case "Soin ":
                             // if health + healing > maxLife then new life = maxLife
@@ -272,15 +272,12 @@ public class Game {
                     }
                 }
                 // STOP GAME IMMEDIATELY if someone die
+                // todo : if game stop : lancer une fonction gameover()
                 if (currentPlayer.getLife() == 0 || enemy.getLife() == 0 ) { break; }
             }
         }
 
 
-        // FIGHT
-
-        // quelle attack ? 1 ou 2 ?
-//        askAttack()
 
     }
 
