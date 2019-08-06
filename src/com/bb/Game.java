@@ -38,9 +38,9 @@ public class Game {
             characterCreation(chosenClass, askCharacterAttributes(), playersList[i]);
 
             // print character description
-            System.out.println("charactersList hero player i ------> " + charactersList.get(i).getDescription());
+            System.out.println(charactersList.get(i).getDescription());
         }
-        System.out.println("Creation des heros terminés");
+//        System.out.println("Creation des heros terminés");
 
         // * Combat start
         fight(charactersList);
@@ -205,13 +205,11 @@ public class Game {
 
     //    ---------------------- FIGHT
     public int askAttack(Character currentPlayer) {
-        // Todo : obligé d'entrer currentlife ? ne peux ont pas currentplayer.getLife ?
         int userChoice;
         do {
             System.out.printf("%s (%d vitalité) veuillez choisir votre action " +
                             "(1 : Attaque Basique, 2 : Attaque Spéciale)\n",
                     currentPlayer.getPlayerOwner(), currentPlayer.getLife());
-
         }
         while (!isUserInputOk(3, userChoice = userInputInt()));
         return userChoice;
@@ -225,7 +223,6 @@ public class Game {
             enemy = charactersList.get(0);
         }
         return enemy;
-
     }
 
     public void fight(List<Character> charactersList) {
@@ -273,7 +270,10 @@ public class Game {
                 }
                 // STOP GAME IMMEDIATELY if someone die
                 // todo : if game stop : lancer une fonction gameover()
-                if (currentPlayer.getLife() == 0 || enemy.getLife() == 0 ) { break; }
+                if (currentPlayer.getLife() == 0 || enemy.getLife() == 0 ) {
+                    System.out.println("HE DIED :!!!");
+                    break;
+                }
             }
         }
 
