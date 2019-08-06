@@ -8,13 +8,13 @@ public class Wizard extends Character {
 
     @Override
     int basicAttack() {
-        // damage equal to his intelligence
+        // Damage equal to his intelligence
         return getIntelligence();
     }
 
     @Override
     int[] specialAttack() {
-        // Heal himself for intelligence * 2
+        // Heal himself for (intelligence * 2)
         int[] specialAttack = new int[1];
         specialAttack[0] = getIntelligence() * 2;
         return specialAttack;

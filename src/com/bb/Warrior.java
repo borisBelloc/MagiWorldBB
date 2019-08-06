@@ -16,9 +16,9 @@ public class Warrior extends Character {
     int[] specialAttack() {
         // Damage to enemy as Strength * 2 ; Damage self as Strength / 2
         int[] specialAttack = new int[2];
-        // damage to enemy
+        // Damage to enemy
         specialAttack[0] = getStrength()*2;
-        // self damage
+        // Self damage
         specialAttack[1] = getStrength()/2;
         return specialAttack;
     }
