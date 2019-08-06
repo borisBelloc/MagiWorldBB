@@ -15,7 +15,7 @@ public class Rogue extends Character {
     int[] specialAttack() {
         // Gain agility as (level/2)
         int[] specialAttack = new int[1];
-        specialAttack[0] = getLevel() * 2;
+        specialAttack[0] = getLevel() / 2;
         return specialAttack;
     }
 
@@ -33,6 +33,6 @@ public class Rogue extends Character {
 
     @Override
     String getSpecialAttackName() {
-        return "Concentration ";
+        return "Concentration";
     }
 }
