@@ -197,8 +197,12 @@ public class Game {
                         characterAttributes[3], characterAttributes[4]
                 ));
                 break;
-//            case 2:
-//                break;
+            case "Rôdeur":
+                charactersList.add(new Rogue(
+                        playerOwner, characterAttributes[0], characterAttributes[1], characterAttributes[2],
+                        characterAttributes[3], characterAttributes[4]
+                ));
+                break;
             case "Mage":
                 charactersList.add(new Wizard(
                         playerOwner, characterAttributes[0], characterAttributes[1], characterAttributes[2],
@@ -275,6 +279,8 @@ public class Game {
                         case "Concentration":
                             // Concentration : Le joueur gagne son niveau divisé par 2 en agilité
                             currentPlayer.setAgility(currentPlayer.getAgility() + currentPlayer.specialAttack()[0]);
+                            System.out.printf("%s utilise %s et gagne %d en agilité.\n",
+                                    currentPlayer.getPlayerOwner(), currentPlayer.getSpecialAttackName(), currentPlayer.specialAttack()[0]);
                             break;
                         case "Soin ":
                             // if health + healing > maxLife then new life = maxLife
