@@ -7,13 +7,13 @@ public class Warrior extends Character {
     }
 
     @Override
-    public int basicAttack() {
-        //  Effectue des dommages égaux à la force du joueur sur l’adversaire.
+    int basicAttack() {
+        // Damage equal to his strength
         return getStrength();
     }
 
     @Override
-    public int[] specialAttack() {
+    int[] specialAttack() {
         // Damage to enemy as Strength * 2 ; Damage self as Strength / 2
         int[] specialAttack = new int[2];
         // damage to enemy
