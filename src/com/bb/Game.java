@@ -37,7 +37,7 @@ public class Game {
         }
 //        System.out.println("Creation des heros terminés");
 
-        // * Combat start
+        // * Fight + result
         System.out.printf("%s a perdu ! ", fight(charactersList));
 
         // game over
@@ -75,7 +75,6 @@ public class Game {
         return sc.nextInt();
     }
 
-
     /**
      * Check if the user input is in the allowed choice range
      *
@@ -107,16 +106,13 @@ public class Game {
                 } else {
                     return false;
                 }
-//                break;
             case 3:
                 if (userChoice == 1 || userChoice == 2) {
                     return true;
                 } else {
                     return false;
                 }
-//                break;
         }
-//        TODO: voir ce return à fix
         return false;
     }
 
@@ -146,7 +142,6 @@ public class Game {
 
         while (!areAttributesOk) {
             for (int i = 0; i < attributesList.length; i++) {
-
                 // Level must be > 0
                 if (i == 0) {
                     do {
@@ -231,10 +226,10 @@ public class Game {
 
 
     private String whoLost(List<Character> charactersList) {
-        List<Character> LooserList = new ArrayList<Character>();
+        List<Character> LooserList = new ArrayList<>();
         for (int i = 0; i < charactersList.size(); i++) {
             if (charactersList.get(i).getLife() <= 0) {
-                LooserList.add(charactersList.get(i));
+                LooserList.add(charactersList.get(i));=
             }
         }
         if (LooserList.size() == 1) {
@@ -286,23 +281,13 @@ public class Game {
                             break;
                     }
                 }
-                // STOP GAME IMMEDIATELY if "player 2" die
+                // STOP GAME IMMEDIATELY if player dies
                 if (currentPlayer.getLife() <= 0 || enemy.getLife() <= 0) {
-                    System.out.println("SORTI ICI");
                     break;
                 }
             }
         }
-        // todo : del this
-        for (int i = 0; i < charactersList.size(); i++) {
-            System.out.println("TEST DE MORT " + charactersList.get(i).getLife());
-        }
-
-        System.out.println("fin fight()");
-
         return whoLost(charactersList);
-
-
     }
 
 

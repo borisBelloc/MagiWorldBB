@@ -62,8 +62,6 @@ public abstract class Character {
     abstract String getSpecialAttackName();
 
 
-    // * GETTER
-
     public String getPlayerOwner() {
         return playerOwner;
     }
@@ -92,12 +90,10 @@ public abstract class Character {
         return maxLife;
     }
 
-    // * SETTER
 
     public void setPlayerOwner(String playerOwner) {
         this.playerOwner = playerOwner;
     }
-
 
     public void setLife(int life) {
         this.life = life;
