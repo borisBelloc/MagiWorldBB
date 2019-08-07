@@ -38,7 +38,7 @@ public class Game {
 //        System.out.println("Creation des heros terminés");
 
         // * Combat start
-        System.out.printf("LE PERDANT EST : %s", fight(charactersList));
+        System.out.printf("%s a perdu ! ", fight(charactersList));
 
         // game over
 
@@ -231,11 +231,7 @@ public class Game {
         return enemy;
     }
 
-    //    todo : utiliser une methode pour print ou pas ?
-//    private void printTextPlayerLostHeal(Character playerAttacking, Character playerLoosingHeal) {
-//        System.out.printf("%s perd %d points de vie\n",
-//                playerLoosingHeal.getPlayerOwner(), playerAttacking.specialAttack()[0]);
-//    }
+
     private String whoLost(List<Character> charactersList) {
         List<Character> LooserList = new ArrayList<Character>();
 
@@ -247,6 +243,7 @@ public class Game {
         if (LooserList.size() == 1) {
             return LooserList.get(0).getPlayerOwner();
         } else {
+            // with Warrior damaging himself it's possible to have both player dying at the same time
             return "Tout le monde";
         }
     }
@@ -306,20 +303,17 @@ public class Game {
                     }
                 }
                 // STOP GAME IMMEDIATELY if "player 2" die
-                // todo : if game stop : lancer une fonction gameover()
                 if (currentPlayer.getLife() <= 0 || enemy.getLife() <= 0) {
                     System.out.println("SORTI ICI");
                     break;
-//                    return looserOfTheFight = whoLost( currentPlayer, enemy);
                 }
             }
         }
+        // todo : del this
         for (int i = 0; i < charactersList.size(); i++) {
             System.out.println("TEST DE MORT " + charactersList.get(i).getLife());
         }
-//        if (looserOfTheFight) {
-//            System.out.printf("%s a perdu !", looserOfTheFight);
-//        }
+
         System.out.println("fin fight()");
 
         return whoLost(charactersList);
