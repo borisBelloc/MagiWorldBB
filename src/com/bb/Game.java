@@ -8,11 +8,9 @@ import java.util.*;
 public class Game {
     // liste des noms des joueurs
     public String[] playersList = {"Joueur 1", "Joueur 2"};
+    String looserOfTheFight;
     // stock les personnages créés
     List<Character> charactersList = new ArrayList<Character>();
-    // list d'objet Character
-//    Character[] charactersList = new Character[2];
-
 
     // DOC : https://guava.dev/releases/snapshot/api/docs/com/google/common/collect/ImmutableMap.html
     // DOC : https://www.geeksforgeeks.org/immutable-map-in-java/
@@ -26,15 +24,12 @@ public class Game {
     public void start() {
 
         for (int i = 0; i < playersList.length; i++) {
-            // %n : saut de ligne
             System.out.printf("Création du personnage du %s%n", playersList[i]);
 
             // * askClass : transform the int into String 'class name')
-            // todo : a t'on vraiment besoin d'un string ?
             String chosenClass = classesList.get(askCharacterClass());
 
             // * Character creation
-            // characterCreation(chosenClass + characterAttributes[] + player name)
             characterCreation(chosenClass, askCharacterAttributes(), playersList[i]);
 
             // print character description
@@ -45,6 +40,7 @@ public class Game {
         // * Combat start
         fight(charactersList);
 
+        // game over
 
         // print attributes array
         // System.out.println(Arrays.toString(askCharacterAttributes()));
@@ -240,15 +236,15 @@ public class Game {
 //        System.out.printf("%s perd %d points de vie\n",
 //                playerLoosingHeal.getPlayerOwner(), playerAttacking.specialAttack()[0]);
 //    }
-    private String whoLost(Character enemy, Character currentPlayer) {
+    private String whoLost(Character currentPlayer, Character enemy) {
         if (enemy.getLife() <= 0 && currentPlayer.getLife() > 0) {
             return enemy.getPlayerOwner();
         } else if (enemy.getLife() > 0 && currentPlayer.getLife() <= 0) {
             return currentPlayer.getPlayerOwner();
-        } else { return "Les deux combattants sont morts"; }
+        } else { return "Tout le monde"; }
     }
 
-    public void fight(List<Character> charactersList) {
+    public String fight(List<Character> charactersList) {
         int userChoice;
         Character enemy;
         Character currentPlayer;
@@ -302,14 +298,24 @@ public class Game {
                             break;
                     }
                 }
-                // STOP GAME IMMEDIATELY if someone die
+                // STOP GAME IMMEDIATELY if "player 2" die
                 // todo : if game stop : lancer une fonction gameover()
-                if (currentPlayer.getLife() == 0 || enemy.getLife() == 0) {
-                    System.out.printf("%s a perdu !", whoLost( enemy, currentPlayer));
+                if (currentPlayer.getLife() <= 0 || enemy.getLife() <= 0) {
+                    System.out.println("SORTI ICI");
                     break;
+//                    return looserOfTheFight = whoLost( currentPlayer, enemy);
                 }
             }
         }
+        for (int i = 0 ; i < charactersList.size() ; i++) {
+            System.out.println("TEST DE MORT " + charactersList.get(i).getLife() );
+        }
+//        if (looserOfTheFight) {
+//            System.out.printf("%s a perdu !", looserOfTheFight);
+//        }
+        System.out.println("MORT MORT ??");
+
+        return looserOfTheFight;
 
 
     }
