@@ -255,6 +255,11 @@ public class Game {
         }
     }
 
+    /**
+     * the main program; execute basic and special attacks till someone (or both) dies
+     * @param charactersList list of all characters involved in the fight
+     * @return the looser of the fight by calling whoLost()
+     */
     public String fight(List<Character> charactersList) {
         int userChoice;
         Character enemy;
