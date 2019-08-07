@@ -1,14 +1,12 @@
 package com.bb;
 
+import java.io.InputStream;
 import java.util.*;
-
-//import com.google.common.collect.ImmutableMap;
 
 
 public class Game {
     // liste des noms des joueurs
     public String[] playersList = {"Joueur 1", "Joueur 2"};
-    String looserOfTheFight;
     // stock les personnages créés
     List<Character> charactersList = new ArrayList<Character>();
 
