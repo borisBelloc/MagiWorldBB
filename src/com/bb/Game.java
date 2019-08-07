@@ -229,7 +229,7 @@ public class Game {
         List<Character> LooserList = new ArrayList<>();
         for (int i = 0; i < charactersList.size(); i++) {
             if (charactersList.get(i).getLife() <= 0) {
-                LooserList.add(charactersList.get(i));=
+                LooserList.add(charactersList.get(i));
             }
         }
         if (LooserList.size() == 1) {
