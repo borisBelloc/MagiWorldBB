@@ -104,19 +104,6 @@ class GameTest {
 
     // Test with fake input
 
-    // récupere la valeur dans le terminal
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-
-    @BeforeEach
-    public void setUpStreams() {
-        System.setOut(new PrintStream(outContent));
-    }
-
-    @AfterEach
-    public void restoreStreams() {
-        System.setOut(System.out);
-    }
-
     // askCharacterClass()
     @Test
     public void Given_input1_When_askingUserCharacterClass_then_acceptTheInput() {
@@ -137,5 +124,22 @@ class GameTest {
         }
 
     }
+
+    // todo later :
+    // if want to check the ouput for Testing ; use :
+
+
+    // récupere la valeur dans le terminal
+//    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+//
+//    @BeforeEach
+//    public void setUpStreams() {
+//        System.setOut(new PrintStream(outContent));
+//    }
+//
+//    @AfterEach
+//    public void restoreStreams() {
+//        System.setOut(System.out);
+//    }
 
 }
