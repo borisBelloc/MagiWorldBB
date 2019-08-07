@@ -27,12 +27,22 @@ public abstract class Character {
      */
     abstract int basicAttack();
 
+    public void basicAttackLog(Character currentPlayer, Character enemy) {
+        System.out.printf("%s utilise %s et inflige %d dommages.\n",
+                currentPlayer.getPlayerOwner(), currentPlayer.getBasicAttackName(), currentPlayer.basicAttack());
+        System.out.printf("%s perd %d points de vie\n",
+                enemy.getPlayerOwner(), currentPlayer.basicAttack());
+    }
+
+
     /**
      * Special attack
      *
      * @return
      */
     abstract int[] specialAttack();
+
+    abstract void specialAttackLog(Character currentPlayer, Character enemy);
 
     /**
      * Character description

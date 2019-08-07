@@ -17,11 +17,22 @@ public class Warrior extends Character {
         // Damage to enemy as Strength * 2 ; Damage self as Strength / 2
         int[] specialAttack = new int[2];
         // Damage to enemy
-        specialAttack[0] = getStrength()*2;
+        specialAttack[0] = getStrength() * 2;
         // Self damage
-        specialAttack[1] = getStrength()/2;
+        specialAttack[1] = getStrength() / 2;
         return specialAttack;
     }
+
+    @Override
+    void specialAttackLog(Character currentPlayer, Character enemy) {
+        System.out.printf("%s utilise %s et inflige %d dommages.\n",
+                currentPlayer.getPlayerOwner(), currentPlayer.getSpecialAttackName(), currentPlayer.specialAttack()[0]);
+        System.out.printf("%s perd %d points de vie\n",
+                enemy.getPlayerOwner(), currentPlayer.specialAttack()[0]);
+        System.out.printf("%s perd %d points de vie\n",
+                currentPlayer.getPlayerOwner(), currentPlayer.specialAttack()[1]);
+    }
+
 
     @Override
     String getDescription() {
@@ -29,8 +40,8 @@ public class Warrior extends Character {
         // integer : %d
         // string : %s
         return String.format("Woarg je suis le Guerrier %s niveau %d " +
-                "je possède %d de vitalité, %d de force, %d d'agilité et %d d'intelligence !",
-                getPlayerOwner(), getLevel(), getLife(), getStrength(), getAgility(), getIntelligence() );
+                        "je possède %d de vitalité, %d de force, %d d'agilité et %d d'intelligence !",
+                getPlayerOwner(), getLevel(), getLife(), getStrength(), getAgility(), getIntelligence());
     }
 
 

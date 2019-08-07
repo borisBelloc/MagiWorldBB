@@ -185,7 +185,6 @@ public class Game {
      * @param playerOwner         player name
      */
     public void characterCreation(String chosenClass, int[] characterAttributes, String playerOwner) {
-
         switch (chosenClass) {
             case "Guerrier":
                 charactersList.add(new Warrior(
@@ -205,7 +204,6 @@ public class Game {
                         characterAttributes[3], characterAttributes[4]
                 ));
                 break;
-
         }
     }
 
@@ -234,7 +232,6 @@ public class Game {
 
     private String whoLost(List<Character> charactersList) {
         List<Character> LooserList = new ArrayList<Character>();
-
         for (int i = 0; i < charactersList.size(); i++) {
             if (charactersList.get(i).getLife() <= 0) {
                 LooserList.add(charactersList.get(i));
@@ -263,33 +260,21 @@ public class Game {
                 if (userChoice == 1) {
                     // basic attack
                     enemy.setLife(enemy.getLife() - currentPlayer.basicAttack());
-                    System.out.printf("%s utilise %s et inflige %d dommages.\n",
-                            currentPlayer.getPlayerOwner(), currentPlayer.getBasicAttackName(), currentPlayer.basicAttack());
-                    System.out.printf("%s perd %d points de vie\n",
-                            enemy.getPlayerOwner(), currentPlayer.basicAttack());
-
+                    currentPlayer.basicAttackLog(currentPlayer, enemy);
                 } else if (userChoice == 2) {
                     // spécial attack
 //                    TODO : mettre ça dans les class de perso ?
                     switch (currentPlayer.getSpecialAttackName()) {
-                        // warrior
                         case "Coup de Rage":
                             enemy.setLife(enemy.getLife() - currentPlayer.specialAttack()[0]);
                             currentPlayer.setLife(currentPlayer.getLife() - currentPlayer.specialAttack()[1]);
-                            System.out.printf("%s utilise %s et inflige %d dommages.\n",
-                                    currentPlayer.getPlayerOwner(), currentPlayer.getSpecialAttackName(), currentPlayer.specialAttack()[0]);
-                            System.out.printf("%s perd %d points de vie\n",
-                                    enemy.getPlayerOwner(), currentPlayer.specialAttack()[0]);
-                            System.out.printf("%s perd %d points de vie\n",
-                                    currentPlayer.getPlayerOwner(), currentPlayer.specialAttack()[1]);
+                            currentPlayer.specialAttackLog(currentPlayer, enemy);
                             break;
                         case "Concentration":
-                            // Concentration : Le joueur gagne son niveau divisé par 2 en agilité
                             currentPlayer.setAgility(currentPlayer.getAgility() + currentPlayer.specialAttack()[0]);
-                            System.out.printf("%s utilise %s et gagne %d en agilité.\n",
-                                    currentPlayer.getPlayerOwner(), currentPlayer.getSpecialAttackName(), currentPlayer.specialAttack()[0]);
+                            currentPlayer.specialAttackLog(currentPlayer, enemy);
                             break;
-                        case "Soin ":
+                        case "Soin":
                             // if health + healing > maxLife then new life = maxLife
                             int healed = currentPlayer.getLife() + currentPlayer.specialAttack()[0];
                             if (currentPlayer.getMaxLife() < healed) {
@@ -297,8 +282,7 @@ public class Game {
                             } else {
                                 currentPlayer.setLife(healed);
                             }
-                            System.out.printf("%s utilise %s et gagne %d en vitalité.\n",
-                                    currentPlayer.getPlayerOwner(), currentPlayer.getSpecialAttackName(), currentPlayer.specialAttack()[0]);
+                            currentPlayer.specialAttackLog(currentPlayer, enemy);
                             break;
                     }
                 }
