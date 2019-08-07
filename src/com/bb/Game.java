@@ -38,7 +38,7 @@ public class Game {
 //        System.out.println("Creation des heros terminés");
 
         // * Combat start
-        fight(charactersList);
+        System.out.printf("LE PERDANT EST : %s", fight(charactersList));
 
         // game over
 
@@ -236,12 +236,19 @@ public class Game {
 //        System.out.printf("%s perd %d points de vie\n",
 //                playerLoosingHeal.getPlayerOwner(), playerAttacking.specialAttack()[0]);
 //    }
-    private String whoLost(Character currentPlayer, Character enemy) {
-        if (enemy.getLife() <= 0 && currentPlayer.getLife() > 0) {
-            return enemy.getPlayerOwner();
-        } else if (enemy.getLife() > 0 && currentPlayer.getLife() <= 0) {
-            return currentPlayer.getPlayerOwner();
-        } else { return "Tout le monde"; }
+    private String whoLost(List<Character> charactersList) {
+        List<Character> LooserList = new ArrayList<Character>();
+
+        for (int i = 0; i < charactersList.size(); i++) {
+            if (charactersList.get(i).getLife() <= 0) {
+                LooserList.add(charactersList.get(i));
+            }
+        }
+        if (LooserList.size() == 1) {
+            return LooserList.get(0).getPlayerOwner();
+        } else {
+            return "Tout le monde";
+        }
     }
 
     public String fight(List<Character> charactersList) {
@@ -307,15 +314,15 @@ public class Game {
                 }
             }
         }
-        for (int i = 0 ; i < charactersList.size() ; i++) {
-            System.out.println("TEST DE MORT " + charactersList.get(i).getLife() );
+        for (int i = 0; i < charactersList.size(); i++) {
+            System.out.println("TEST DE MORT " + charactersList.get(i).getLife());
         }
 //        if (looserOfTheFight) {
 //            System.out.printf("%s a perdu !", looserOfTheFight);
 //        }
-        System.out.println("MORT MORT ??");
+        System.out.println("fin fight()");
 
-        return looserOfTheFight;
+        return whoLost(charactersList);
 
 
     }
