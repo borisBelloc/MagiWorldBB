@@ -2,6 +2,9 @@ package com.bb;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
@@ -52,36 +55,24 @@ class GameTest {
         assertEquals(true, game.isUserInputOk( 3, 1));
     }
 
+    // * Test characterCreation
 
-
-    // * Test Création class
-//    @Test
-//    public void aaaa() {
-//        Game game = new Game();
-//        int userChoice = 1;
-//        assertEquals(false, game.askCharacterClass());
-//    }
-
-
-
-
-
-
-//    @Test
-//    void askCharacterCreation() {
-//    }
-//    Game game = new Game();
-//
-//    @Test
-//    public void Given_WrongChoice_When_UserAskedClasses_Then_AskChoiceAgain (){
-//        game.askCharacterCreation();
-//
-//    }
-
-
-
-
-
+    @Test
+    public void Given_GoodRequirementToCreateCharacter_When_characterCreation_Then_addCharacterTocharactersList() {
+        Game game = new Game();
+        // characterAttributes [ level, strength, agility, intelligence, life ]
+        int[] characterAttributes = {5, 5, 0, 0, 25};
+        game.characterCreation("Guerrier", characterAttributes, "playerTest");
+        assertEquals(1, game.charactersList.size());
+    }
+    @Test
+    public void Given_WrongRequirementToCreateCharacter_When_characterCreation_Then_dontCreateCharacter() {
+        Game game = new Game();
+        // characterAttributes [ level, strength, agility, intelligence, life ]
+        int[] characterAttributes = {5, 5, 0, 0, 25};
+        game.characterCreation("wrongClassName", characterAttributes, "playerTest");
+        assertEquals(0, game.charactersList.size());
+    }
 
 
 }
