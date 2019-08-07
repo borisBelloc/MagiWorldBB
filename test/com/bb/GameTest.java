@@ -1,13 +1,21 @@
 package com.bb;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
+
+    //    todo :         Game game = new Game();
+    // todo : en dehors des test car ts le monde l'utilise
 
     // * Test isUserInputOk
     @Test
@@ -87,6 +95,7 @@ class GameTest {
         game.characterCreation("Guerrier", characterAttributes, "player2");
         assertEquals("Tout le monde", game.whoLost(game.charactersList));
     }
+
     @Test
     public void Given_1CharactersWithoutHeal_When_UsingWhoLost_then_returnPlayer2Died() {
         Game game = new Game();
@@ -96,6 +105,7 @@ class GameTest {
         game.characterCreation("Guerrier", character2Attributes, "player2");
         assertEquals("player2", game.whoLost(game.charactersList));
     }
+
     @Test
     public void Given_1CharactersWithoutHeal_When_UsingWhoLost_then_returnPlayer1Died() {
         Game game = new Game();
@@ -104,6 +114,44 @@ class GameTest {
         game.characterCreation("Guerrier", character1Attributes, "player1");
         game.characterCreation("Guerrier", character2Attributes, "player2");
         assertEquals("player1", game.whoLost(game.charactersList));
+    }
+
+    // Test with fake input
+
+    // récupere la valeur dans le terminal
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+
+    @BeforeEach
+    public void setUpStreams() {
+        System.setOut(new PrintStream(outContent));
+    }
+
+    @AfterEach
+    public void restoreStreams() {
+        System.setOut(System.out);
+    }
+
+    // askCharacterClass()
+    @Test
+    public void Given_input1_When_askingUserCharacterClass_then_acceptTheInput() {
+        // fake input by user
+        System.setIn(new ByteArrayInputStream("1".getBytes()));
+        Game game = new Game();
+        assertEquals(1, game.askCharacterClass());
+    }
+
+    // this test check if the class is created, if it is then the test failled  
+    @Test
+    public void Given_inputOutOfrange_When_askingUserCharacterClass_then_Error() {
+        System.setIn(new ByteArrayInputStream("5".getBytes()));
+        Game game = new Game();
+        try {
+            game.askCharacterClass();
+            fail();
+        } catch (java.util.NoSuchElementException e) {
+            // succeed();
+        }
+
     }
 
 }
