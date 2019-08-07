@@ -33,29 +33,9 @@ public class Game {
             // print character description
             System.out.println(charactersList.get(i).getDescription());
         }
-//        System.out.println("Creation des heros terminés");
 
         // * Fight + result
         System.out.printf("%s a perdu ! ", fight(charactersList));
-
-        // game over
-
-        // print attributes array
-        // System.out.println(Arrays.toString(askCharacterAttributes()));
-
-//            System.out.println("charactersList AFTER ------> " + charactersList);
-//            System.out.println(" AFTER -----> ----->" + Arrays.toString(charactersList.toArray()));
-
-
-        // print les propriétaire des perso
-//            System.out.println("AA" + charactersList.get(0).getPlayerOwner());
-
-//            for(int j = 0; j < charactersList.size(); j++) {
-////                System.out.println(playersList[charactersList.get(j).getPlayerOwner()]);
-//                System.out.println( charactersList.get(j).getPlayerOwner());
-//                //playersList[i]
-//            }
-
     }
 
 
