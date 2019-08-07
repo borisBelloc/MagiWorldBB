@@ -201,6 +201,12 @@ public class Game {
     }
 
     //    ---------------------- FIGHT
+
+    /**
+     * Ask the user witch attack he want to use (basic || special)
+     * @param currentPlayer the one playing now
+     * @return int 1 || 2
+     */
     public int askAttack(Character currentPlayer) {
         int userChoice;
         do {
@@ -212,6 +218,12 @@ public class Game {
         return userChoice;
     }
 
+    /**
+     * Find the enemy Character in the array of Characters
+     * @param charactersList list of all characters involved in the fight
+     * @param currentPlayer the one playing now
+     * @return Character
+     */
     private Character selectEnemy(List<Character> charactersList, Character currentPlayer) {
         Character enemy;
         if (currentPlayer == charactersList.get(0)) {
@@ -223,7 +235,12 @@ public class Game {
     }
 
 
-    private String whoLost(List<Character> charactersList) {
+    /**
+     * Check who lost game by having life <= 0
+     * @param charactersList list of all characters involved in the fight
+     * @return String
+     */
+    protected String whoLost(List<Character> charactersList) {
         List<Character> LooserList = new ArrayList<>();
         for (int i = 0; i < charactersList.size(); i++) {
             if (charactersList.get(i).getLife() <= 0) {

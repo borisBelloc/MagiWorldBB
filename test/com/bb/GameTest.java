@@ -10,49 +10,52 @@ import static org.junit.jupiter.api.Assertions.*;
 class GameTest {
 
     // * Test isUserInputOk
-    // origin 1
     @Test
     public void Given_Origin1AndWrongUserChoice_When_isUserInputOk_Then_ReturnCorrectBool() {
         Game game = new Game();
-        assertEquals(false, game.isUserInputOk( 1, 5));
+        assertEquals(false, game.isUserInputOk(1, 5));
     }
+
     @Test
     public void Given_Origin1AndRightUserChoice_When_isUserInputOk_Then_ReturnCorrectBools() {
         Game game = new Game();
-        assertEquals(true, game.isUserInputOk( 1, 2));
+        assertEquals(true, game.isUserInputOk(1, 2));
     }
-    // origin 20
+
     @Test
     public void Given_Origin20AndWrongUserChoice_When_isUserInputOk_Then_ReturnCorrectBool() {
         Game game = new Game();
-        assertEquals(false, game.isUserInputOk( 20, 0));
+        assertEquals(false, game.isUserInputOk(20, 0));
     }
+
     @Test
     public void Given_Origin20AndRightUserChoice_When_isUserInputOk_Then_ReturnCorrectBool() {
         Game game = new Game();
-        assertEquals(true, game.isUserInputOk( 20, 75));
+        assertEquals(true, game.isUserInputOk(20, 75));
     }
-    // origin 21
+
     @Test
     public void Given_Origin21AndWrongUserChoice_When_isUserInputOk_Then_ReturnCorrectBool() {
         Game game = new Game();
-        assertEquals(false, game.isUserInputOk( 21, 110));
+        assertEquals(false, game.isUserInputOk(21, 110));
     }
+
     @Test
     public void Given_Origin21AndRightUserChoice_When_isUserInputOk_Then_ReturnCorrectBool() {
         Game game = new Game();
-        assertEquals(true, game.isUserInputOk( 21, 75));
+        assertEquals(true, game.isUserInputOk(21, 75));
     }
-    // origin 3
+
     @Test
     public void Given_Origin3AndWrongUserChoice_When_isUserInputOk_Then_ReturnCorrectBool() {
         Game game = new Game();
-        assertEquals(false, game.isUserInputOk( 3, 3));
+        assertEquals(false, game.isUserInputOk(3, 3));
     }
+
     @Test
     public void Given_Origin3AndRightUserChoice_When_isUserInputOk_Then_ReturnCorrectBool() {
         Game game = new Game();
-        assertEquals(true, game.isUserInputOk( 3, 1));
+        assertEquals(true, game.isUserInputOk(3, 1));
     }
 
     // * Test characterCreation
@@ -65,6 +68,7 @@ class GameTest {
         game.characterCreation("Guerrier", characterAttributes, "playerTest");
         assertEquals(1, game.charactersList.size());
     }
+
     @Test
     public void Given_WrongRequirementToCreateCharacter_When_characterCreation_Then_dontCreateCharacter() {
         Game game = new Game();
@@ -74,5 +78,32 @@ class GameTest {
         assertEquals(0, game.charactersList.size());
     }
 
+    // * Test whoLost
+    @Test
+    public void Given_2CharactersWithoutHeal_When_UsingWhoLost_then_returnMessageBothDied() {
+        Game game = new Game();
+        int[] characterAttributes = {5, 5, 0, 0, 0};
+        game.characterCreation("Guerrier", characterAttributes, "player1");
+        game.characterCreation("Guerrier", characterAttributes, "player2");
+        assertEquals("Tout le monde", game.whoLost(game.charactersList));
+    }
+    @Test
+    public void Given_1CharactersWithoutHeal_When_UsingWhoLost_then_returnPlayer2Died() {
+        Game game = new Game();
+        int[] character1Attributes = {5, 5, 0, 0, 25};
+        int[] character2Attributes = {5, 5, 0, 0, 0};
+        game.characterCreation("Guerrier", character1Attributes, "player1");
+        game.characterCreation("Guerrier", character2Attributes, "player2");
+        assertEquals("player2", game.whoLost(game.charactersList));
+    }
+    @Test
+    public void Given_1CharactersWithoutHeal_When_UsingWhoLost_then_returnPlayer1Died() {
+        Game game = new Game();
+        int[] character1Attributes = {5, 5, 0, 0, 0};
+        int[] character2Attributes = {5, 5, 0, 0, 30};
+        game.characterCreation("Guerrier", character1Attributes, "player1");
+        game.characterCreation("Guerrier", character2Attributes, "player2");
+        assertEquals("player1", game.whoLost(game.charactersList));
+    }
 
 }
