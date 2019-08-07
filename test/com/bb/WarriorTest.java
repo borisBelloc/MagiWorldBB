@@ -20,13 +20,12 @@ class WarriorTest {
 
     @Test
     public void Given_2Character_When_currentPlayerBasicAttackEnemy_Then_getTheRightHeal() {
-        int[] characterAttributes = {10, 10, 0, 0, 50};
+        int[] characterAttributes = {2, 10, 0, 0, 10};
         game.characterCreation("Guerrier", characterAttributes, "player1");
         game.characterCreation("Guerrier", characterAttributes, "player2");
-        Character current = game.charactersList.get(0);
-        Character enemy = game.charactersList.get(1);
-        enemy.setLife( enemy.getLife() - current.basicAttack());
-        assertEquals(40 , enemy.getLife());
+        System.setIn(new ByteArrayInputStream("1".getBytes()));
+        game.fight(game.charactersList);
+        assertEquals(0 , game.charactersList.get(1).getLife());
     }
 
     @Test

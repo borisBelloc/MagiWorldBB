@@ -1,6 +1,5 @@
 package com.bb;
 
-import java.io.InputStream;
 import java.util.*;
 
 
@@ -19,6 +18,9 @@ public class Game {
             3, "Mage");
 
 
+    /**
+     * This is the main method with the game process
+     */
     public void start() {
 
         for (int i = 0; i < playersList.length; i++) {
@@ -236,7 +238,7 @@ public class Game {
     }
 
     /**
-     * the main program; execute basic and special attacks till someone (or both) dies
+     * THE fight; execute basic and special attacks till someone (or both) dies
      * @param charactersList list of all characters involved in the fight
      * @return the looser of the fight by calling whoLost()
      */
@@ -258,7 +260,6 @@ public class Game {
                     currentPlayer.basicAttackLog(currentPlayer, enemy);
                 } else if (userChoice == 2) {
                     // spécial attack
-//                    TODO : mettre ça dans les class de perso ?
                     switch (currentPlayer.getSpecialAttackName()) {
                         case "Coup de Rage":
                             enemy.setLife(enemy.getLife() - currentPlayer.specialAttack()[0]);
@@ -289,6 +290,5 @@ public class Game {
         }
         return whoLost(charactersList);
     }
-
 
 }
