@@ -2,12 +2,14 @@ package com.bb;
 
 import java.util.*;
 
-
+/**
+ *  Here is the game.
+ */
 public class Game {
     // liste des noms des joueurs
     public String[] playersList = {"Joueur 1", "Joueur 2"};
     // stock les personnages créés
-    List<Character> charactersList = new ArrayList<Character>();
+    List<Character> charactersList = new ArrayList<>();
 
     // DOC : https://guava.dev/releases/snapshot/api/docs/com/google/common/collect/ImmutableMap.html
     // DOC : https://www.geeksforgeeks.org/immutable-map-in-java/
@@ -26,17 +28,17 @@ public class Game {
         for (int i = 0; i < playersList.length; i++) {
             System.out.printf("Création du personnage du %s%n", playersList[i]);
 
-            // * askClass : transform the int into String 'class name')
+            // * Ask Character class :
             String chosenClass = classesList.get(askCharacterClass());
 
             // * Character creation
             characterCreation(chosenClass, askCharacterAttributes(), playersList[i]);
 
-            // print character description
+            // * Print character description
             System.out.println(charactersList.get(i).getDescription());
         }
 
-        // * Fight + result
+        // * Fight + result of the game
         System.out.printf("%s a perdu ! ", fight(charactersList));
     }
 
@@ -204,7 +206,7 @@ public class Game {
      * Find the enemy Character in the array of Characters
      * @param charactersList list of all characters involved in the fight
      * @param currentPlayer the one playing now
-     * @return Character
+     * @return Character enemy
      */
     private Character selectEnemy(List<Character> charactersList, Character currentPlayer) {
         Character enemy;

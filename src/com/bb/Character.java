@@ -22,11 +22,15 @@ public abstract class Character {
 
     /**
      * Basic attack
-     *
-     * @return
+     * @return number of damage
      */
     abstract int basicAttack();
 
+    /**
+     * Text to print
+     * @param currentPlayer the one playing now
+     * @param enemy the enemy of current player
+     */
     public void basicAttackLog(Character currentPlayer, Character enemy) {
         System.out.printf("%s utilise %s et inflige %d dommages.\n",
                 currentPlayer.getPlayerOwner(), currentPlayer.getBasicAttackName(), currentPlayer.basicAttack());
@@ -38,7 +42,7 @@ public abstract class Character {
     /**
      * Special attack
      *
-     * @return
+     * @return damage/health as array
      */
     abstract int[] specialAttack();
 
